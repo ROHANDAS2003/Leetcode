@@ -1,20 +1,33 @@
 class Solution(object):
     def findMissingAndRepeatedValues(self, grid):
         l = len(grid)
-        count = []
-        for i in range(l):
-            for j in range(l):
-                if grid[i][j] in count:
-                    a = grid[i][j]
-                else:
-                    count.append(grid[i][j])
-        j = 1
-        while j<=(l*l):
-            if j in count:
-                pass
-            else:
-                b = j
-            j+=1
+        n = l*l
+        expected_sum = n * (n + 1) // 2
+        actual_sum = 0
+        seen = set()
+        
+        for row in grid:
+            for num in row:
+                actual_sum += num
+                if num in seen:
+                    a = num
+                seen.add(num)
+        
+        b = expected_sum - actual_sum + a
+        # count = []
+        # for i in range(l):
+        #     for j in range(l):
+        #         if grid[i][j] in count:
+        #             a = grid[i][j]
+        #         else:
+        #             count.append(grid[i][j])
+        # j = 1
+        # while j<=(l*l):
+        #     if j in count:
+        #         pass
+        #     else:
+        #         b = j
+        #     j+=1
             
         return [a,b]
 
